@@ -1,13 +1,13 @@
 <script lang="ts">
+	import ChevronsUpDown from '@lucide/svelte/icons/chevrons-up-down';
+	import LogOut from '@lucide/svelte/icons/log-out';
 	import * as Avatar from '$lib/components/ui/avatar/index.js';
 	import * as DropdownMenu from '$lib/components/ui/dropdown-menu/index.js';
 	import * as Sidebar from '$lib/components/ui/sidebar/index.js';
 	import { useSidebar } from '$lib/components/ui/sidebar/index.js';
-	import ChevronsUpDown from '@lucide/svelte/icons/chevrons-up-down';
-	import LogOut from '@lucide/svelte/icons/log-out';
-	import Settings from '@lucide/svelte/icons/settings';
 
 	let { user }: { user: { name: string; email: string; avatar: string } } = $props();
+
 	const sidebar = useSidebar();
 </script>
 
@@ -17,9 +17,9 @@
 			<DropdownMenu.Trigger>
 				{#snippet child({ props })}
 					<Sidebar.MenuButton
-						size="lg"
-						class="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground"
 						{...props}
+						size="lg"
+						class="data-[state=open]:bg-sidebar-accent data-[state=open]:text-sidebar-accent-foreground md:h-8 md:p-0"
 					>
 						<Avatar.Root class="h-8 w-8 rounded-lg">
 							<Avatar.Image src={user.avatar} alt={user.name} />
@@ -51,11 +51,6 @@
 						</div>
 					</div>
 				</DropdownMenu.Label>
-				<DropdownMenu.Separator />
-				<DropdownMenu.Item>
-					<Settings />
-					Setting
-				</DropdownMenu.Item>
 				<DropdownMenu.Separator />
 				<DropdownMenu.Item>
 					<LogOut />
