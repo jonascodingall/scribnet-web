@@ -9,6 +9,20 @@
 			email: 'jonas.coding.all@gmail.com',
 			avatar: 'https://avatar.iran.liara.run/public/48'
 		},
+		users: [
+			{
+				name: 'VI',
+				email: 'troungvinygiyen@gmail.com',
+				avatar: 'https://avatar.iran.liara.run/public/47',
+				isActive: false
+			},
+			{
+				name: 'Ahmed',
+				email: 'ahmed@gmail.com',
+				avatar: 'https://avatar.iran.liara.run/public/46',
+				isActive: true
+			}
+		],
 		navMain: [
 			{
 				title: 'Home',
@@ -27,16 +41,19 @@
 </script>
 
 <script lang="ts">
-	import NavUser from '$lib/components/modules/nav-user.svelte';
+	import NavUser from '$lib/components/modules/sidebar/nav-user.svelte';
 	import * as Sidebar from '$lib/components/ui/sidebar/index.js';
 	import Command from '@lucide/svelte/icons/command';
 	import type { ComponentProps } from 'svelte';
 	import { goto } from '$app/navigation';
+	import * as Avatar from '$lib/components/ui/avatar/index.js';
+	import { Button } from '$lib/components/ui/button';
 
-	let { ref = $bindable(null), ...restProps }: ComponentProps<typeof Sidebar.Root> = $props();
+	let { ref = $bindable(null), activeUser = $bindable(null), ...restProps } = $props();
 
 	let activeItem = $state(data.navMain[0]);
 	let sidebar = Sidebar.useSidebar();
+	activeUser = data.users[1];
 </script>
 
 <Sidebar.Root
@@ -118,7 +135,24 @@
 		</Sidebar.Header>
 		<Sidebar.Content>
 			<Sidebar.Group class="px-0">
-				<Sidebar.GroupContent>Users</Sidebar.GroupContent>
+				<Sidebar.GroupContent>
+					{#each data.users as user}
+						<Button
+							variant="ghost"
+							class="flex w-full justify-start px-5 py-10"
+							onclick={() => (activeUser = user)}
+						>
+							<Avatar.Root class="h-12 w-12 rounded-lg">
+								<Avatar.Image src={user.avatar} alt={user.name} />
+								<Avatar.Fallback class="rounded-lg">CN</Avatar.Fallback>
+							</Avatar.Root>
+							<div class="flex flex-col items-start">
+								<span>{user.name}</span>
+								<span class="text-xs">{user.email}</span>
+							</div>
+						</Button>
+					{/each}
+				</Sidebar.GroupContent>
 			</Sidebar.Group>
 		</Sidebar.Content>
 	</Sidebar.Root>
