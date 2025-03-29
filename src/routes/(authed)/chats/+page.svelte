@@ -130,12 +130,14 @@
 	import Send from '@lucide/svelte/icons/send';
 </script>
 
-<div class="flex h-full flex-col">
-	<div class="flex-1">
-		<div class="flex h-full flex-col gap-2 bg-orange-700">
-			<ScrollArea class="h-[46rem] w-48 rounded-md border"></ScrollArea>
+<div class="h-max">
+	<ScrollArea class="h-max">
+		<div class="flex flex-col gap-5">
+			{#each messages as message}
+				<span>{message.text}</span>
+			{/each}
 		</div>
-	</div>
+	</ScrollArea>
 </div>
 
 <div class="relative">
