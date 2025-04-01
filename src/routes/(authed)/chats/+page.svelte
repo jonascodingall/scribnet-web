@@ -131,7 +131,7 @@
 </script>
 
 <div class="h-max">
-	<ScrollArea class="h-max">
+	<ScrollArea class="h-[750px]">
 		<div class="flex flex-col gap-5">
 			{#each messages as message}
 				<span>{message.text}</span>

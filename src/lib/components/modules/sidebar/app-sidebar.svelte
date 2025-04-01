@@ -20,7 +20,13 @@
 				name: 'Ahmed',
 				email: 'ahmed@gmail.com',
 				avatar: 'https://avatar.iran.liara.run/public/46',
-				isActive: true
+				isActive: false
+			},
+			{
+				name: 'Matthew',
+				email: 'matthew@gmail.com',
+				avatar: 'https://avatar.iran.liara.run/public/45',
+				isActive: false
 			}
 		],
 		navMain: [
