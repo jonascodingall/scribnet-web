@@ -2,33 +2,7 @@
 	import MessageCircle from '@lucide/svelte/icons/message-circle';
 	import House from '@lucide/svelte/icons/house';
 
-	// This is sample data
 	const data = {
-		user: {
-			name: 'Jonas',
-			email: 'jonas.coding.all@gmail.com',
-			avatar: 'https://avatar.iran.liara.run/public/48'
-		},
-		users: [
-			{
-				name: 'VI',
-				email: 'troungvinygiyen@gmail.com',
-				avatar: 'https://avatar.iran.liara.run/public/47',
-				isActive: false
-			},
-			{
-				name: 'Ahmed',
-				email: 'ahmed@gmail.com',
-				avatar: 'https://avatar.iran.liara.run/public/46',
-				isActive: false
-			},
-			{
-				name: 'Matthew',
-				email: 'matthew@gmail.com',
-				avatar: 'https://avatar.iran.liara.run/public/45',
-				isActive: false
-			}
-		],
 		navMain: [
 			{
 				title: 'Home',
@@ -47,19 +21,20 @@
 </script>
 
 <script lang="ts">
+	import { Button } from '$lib/components/ui/button';
 	import NavUser from '$lib/components/modules/sidebar/nav-user.svelte';
 	import * as Sidebar from '$lib/components/ui/sidebar/index.js';
-	import Command from '@lucide/svelte/icons/command';
-	import type { ComponentProps } from 'svelte';
-	import { goto } from '$app/navigation';
 	import * as Avatar from '$lib/components/ui/avatar/index.js';
-	import { Button } from '$lib/components/ui/button';
+	import Command from '@lucide/svelte/icons/command';
 
-	let { ref = $bindable(null), activeUser = $bindable(null), ...restProps } = $props();
+	import { goto } from '$app/navigation';
+	import { allUsers, authUser, selectedUser } from '$lib/stores/userStore';
+	import type { User } from '$lib/types/User';
+
+	let { ref = $bindable(null), ...restProps } = $props();
 
 	let activeItem = $state(data.navMain[0]);
 	let sidebar = Sidebar.useSidebar();
-	activeUser = data.users[1];
 </script>
 
 <Sidebar.Root
@@ -124,7 +99,7 @@
 			</Sidebar.Group>
 		</Sidebar.Content>
 		<Sidebar.Footer>
-			<NavUser user={data.user} />
+			<NavUser user={$authUser} />
 		</Sidebar.Footer>
 	</Sidebar.Root>
 
@@ -142,11 +117,13 @@
 		<Sidebar.Content>
 			<Sidebar.Group class="px-0">
 				<Sidebar.GroupContent>
-					{#each data.users as user}
+					{#each $allUsers as user}
 						<Button
 							variant="ghost"
 							class="flex w-full justify-start px-5 py-10"
-							onclick={() => (activeUser = user)}
+							onclick={() => {
+								$selectedUser = user;
+							}}
 						>
 							<Avatar.Root class="h-12 w-12 rounded-lg">
 								<Avatar.Image src={user.avatar} alt={user.name} />
