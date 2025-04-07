@@ -8,7 +8,6 @@
 </script>
 
 <header class="top-0 flex items-center gap-2 border-b bg-background p-4">
-	<Sidebar.Trigger class="-ml-1" />
 	<Separator orientation="vertical" class="mr-2 h-4" />
 	{#if $selectedUser}
 		<div class="flex gap-5">

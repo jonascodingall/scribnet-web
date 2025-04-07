@@ -1,23 +1,47 @@
-<script lang="ts">
-	import * as Sidebar from '$lib/components/ui/sidebar/index.js';
-	import AppSidebar from '$lib/components/modules/sidebar/app-sidebar.svelte';
-	import SidebarHeader from '$lib/components/modules/sidebar/sidebar-header.svelte';
-	let { children } = $props();
-	let sidebarRef = $state(null);
+<script lang="ts" module>
+	import MessageCircle from '@lucide/svelte/icons/message-circle';
+	import House from '@lucide/svelte/icons/house';
+
+	const data = {
+		navMain: [
+			{
+				title: 'Home',
+				url: '/home',
+				icon: House,
+				sidebar: null,
+				isActive: true
+			},
+			{
+				title: 'Chats',
+				url: '/chats',
+				icon: MessageCircle,
+				sidebar: SbChats,
+				isActive: false
+			}
+		]
+	};
 </script>
 
-<Sidebar.Provider style="--sidebar-width: 350px;">
-	<AppSidebar bind:ref={sidebarRef} />
+<script lang="ts">
+	import * as Sidebar from '$lib/components/ui/sidebar/index.js';
+	import SbBase from '$lib/components/modules/sidebar2/sb-base.svelte';
+	import SbChats from '$lib/components/modules/sidebar2/sb-chats.svelte';
+	let { children } = $props();
+
+	let activeItem = $state(data.navMain[1]);
+</script>
+
+<Sidebar.Provider
+	style="--sidebar-width: {activeItem.sidebar ? '350px' : '0px'};"
+	class="transition-all"
+>
+	<Sidebar.Root collapsible="icon" class="[&>[data-sidebar=sidebar]]:flex-row">
+		<SbBase {data} bind:activeItem />
+		{#if activeItem.sidebar}
+			<activeItem.sidebar />
+		{/if}
+	</Sidebar.Root>
 	<Sidebar.Inset>
-		<div class="flex h-screen">
-			<div class="flex flex-1 flex-col">
-				<header>
-					<SidebarHeader />
-				</header>
-				<main class="flex flex-1 flex-col overflow-hidden">
-					{@render children()}
-				</main>
-			</div>
-		</div>
+		{@render children()}
 	</Sidebar.Inset>
 </Sidebar.Provider>
