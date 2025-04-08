@@ -3,14 +3,13 @@
 	import { Button } from '$lib/components/ui/button';
 	import * as Sidebar from '$lib/components/ui/sidebar/index.js';
 	import { allUsers, selectedUser } from '$lib/stores/userStore';
+
+	let { sidebarTwoRef = $bindable() } = $props();
 </script>
 
-<Sidebar.Root collapsible="none" class="hidden flex-1 md:flex">
-	<Sidebar.Header class="gap-3.5 border-b p-4">
-		<div class="flex w-full items-center justify-between">
-			<div class="text-base font-medium text-foreground">Chats</div>
-		</div>
-		<Sidebar.Input placeholder="Type to search..." />
+<Sidebar.Root bind:this={sidebarTwoRef} collapsible="none" class="hidden flex-1 md:flex">
+	<Sidebar.Header class="border-b p-5">
+		<span>Chats</span>
 	</Sidebar.Header>
 	<Sidebar.Content>
 		<Sidebar.Group class="px-0">
