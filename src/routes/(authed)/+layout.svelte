@@ -24,8 +24,8 @@
 
 <script lang="ts">
 	import * as Sidebar from '$lib/components/ui/sidebar/index.js';
-	import SbBase from '$lib/components/modules/sidebar2/sb-base.svelte';
-	import SbChats from '$lib/components/modules/sidebar2/sb-chats.svelte';
+	import SbBase from '$lib/components/modules/sb-base.svelte';
+	import SbChats from '$lib/components/modules/sb-chats.svelte';
 	let { children } = $props();
 
 	let activeItem = $state(data.navMain[1]);

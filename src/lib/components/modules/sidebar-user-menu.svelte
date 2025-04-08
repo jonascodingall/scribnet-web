@@ -7,12 +7,9 @@
 	import * as Avatar from '$lib/components/ui/avatar/index.js';
 	import * as DropdownMenu from '$lib/components/ui/dropdown-menu/index.js';
 	import * as Sidebar from '$lib/components/ui/sidebar/index.js';
-	import { useSidebar } from '$lib/components/ui/sidebar/index.js';
 
 	import { Button } from '$lib/components/ui/button/index.js';
 	let { user }: { user: { name: string; email: string; avatar: string } } = $props();
-
-	const sidebar = useSidebar();
 </script>
 
 <Sidebar.Menu>
@@ -48,7 +45,6 @@
 			</DropdownMenu.Trigger>
 			<DropdownMenu.Content
 				class="w-[var(--bits-dropdown-menu-anchor-width)] min-w-56 rounded-lg"
-				side={sidebar.isMobile ? 'bottom' : 'right'}
 				align="end"
 				sideOffset={4}
 			>

@@ -1,6 +1,5 @@
 <script lang="ts">
 	import { Separator } from '$lib/components/ui/separator/index.js';
-	import * as Sidebar from '$lib/components/ui/sidebar/index.js';
 	import * as Avatar from '$lib/components/ui/avatar/index.js';
 	import Skeleton from '$lib/components/ui/skeleton/skeleton.svelte';
 
@@ -8,7 +7,6 @@
 </script>
 
 <header class="top-0 flex items-center gap-2 border-b bg-background p-4">
-	<Separator orientation="vertical" class="mr-2 h-4" />
 	{#if $selectedUser}
 		<div class="flex gap-5">
 			<Avatar.Root class="h-8 w-8 rounded-lg">

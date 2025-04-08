@@ -1,12 +1,9 @@
 <script>
 	import MessageCard from '$lib/components/modules/messageCard.svelte';
-	import SbChats from '$lib/components/modules/sidebar2/sb-chats.svelte';
 	import { Input } from '$lib/components/ui/input';
 	import { ScrollArea } from '$lib/components/ui/scroll-area/index.js';
 	import { Separator } from '$lib/components/ui/separator/index.js';
-	import SidebarHeader from '$lib/components/modules/sidebar/sidebar-header.svelte';
-	import * as Sidebar from '$lib/components/ui/sidebar/index.js';
-
+	import ChatHeader from '$lib/components/modules/chat-header.svelte';
 	import { userMessages } from '$lib/stores/chatStore';
 	import { authUser } from '$lib/stores/userStore';
 </script>
@@ -14,7 +11,7 @@
 <div class="flex h-screen">
 	<div class="flex flex-1 flex-col">
 		<header>
-			<SidebarHeader />
+			<ChatHeader />
 		</header>
 
 		<main class="flex flex-1 flex-col overflow-hidden">
