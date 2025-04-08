@@ -32,8 +32,9 @@
 </script>
 
 <Sidebar.Provider
-	style="--sidebar-width: {activeItem.sidebar ? '350px' : '0px'};"
+	style="--sidebar-width: 350px;"
 	class="transition-all"
+	open={activeItem.sidebar !== null}
 >
 	<Sidebar.Root collapsible="icon" class="[&>[data-sidebar=sidebar]]:flex-row">
 		<SbBase {data} bind:activeItem />
