@@ -7,7 +7,7 @@
 	let { sidebarTwoRef = $bindable() } = $props();
 </script>
 
-<Sidebar.Root bind:this={sidebarTwoRef} collapsible="none" class="hidden flex-1 md:flex">
+<Sidebar.Root collapsible="none" class="hidden flex-1 md:flex">
 	<Sidebar.Header class="border-b p-5">
 		<span>Chats</span>
 	</Sidebar.Header>
